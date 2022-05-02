@@ -1,5 +1,3 @@
-" vim: foldmethod=marker foldenable
-
 " Disclaim ------------ {{{
 "Chao Wang's personal vim configurations.
 "Repo: https://github.com/hit9/dotfiles
@@ -26,7 +24,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 "Range, pattern and substitute preview. :substite :smagic :snomagic
 Plug 'markonm/traces.vim'
 "Completeion
-"Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 "Visualization Enchance.
 Plug 'Yggdroot/indentLine' "Visualize us indent levels.
 "Fast Movement, Motions.

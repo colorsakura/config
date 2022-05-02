@@ -2,14 +2,14 @@
 new_window none
 gaps inner 0
 gaps outer 0
-smart_gaps on
+#smart_gaps on
 
 set $mod Mod4
 set $alt Mod1
 set $ctrl Control
 
 
-font pango:PingFang SC 11
+font pango:Source Han Sans CN 11.5
 
 
 
@@ -18,10 +18,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 floating_modifier $mod
 
@@ -32,43 +32,35 @@ bindsym $alt+l exec "sleep 1; xset dpms force off;blurlock"
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 bindsym $ctrl+q kill
-bindsym $alt+r exec --no-startup-id rofi -dpi 220 -theme /usr/share/rofi/themes/solarized_alternate.rasi -show run -columns 3
+bindsym $alt+r exec --no-startup-id rofi -dpi 192 -theme /usr/share/rofi/themes/solarized_alternate.rasi -show run -columns 3
 
-bindsym $alt+x exec --no-startup-id rofi -dpi 220 -theme  /usr/share/rofi/themes/solarized_alternate.rasi -show window -columns 3
+bindsym $alt+x exec --no-startup-id rofi -dpi 192 -theme  /usr/share/rofi/themes/solarized_alternate.rasi -show window -columns 3
 
 
 bindsym $mod+j focus down
 bindsym $mod+k focus up
-bindsym $mod+l focus right 
+bindsym $mod+l focus right
 bindsym $mod+h focus left
 
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left
 
-
-bindsym $ctrl+Left focus left
-bindsym $ctrl+Down focus down
-bindsym $ctrl+Up focus up
-bindsym $ctrl+Right focus right
-
-bindsym $mod+Shift+j move left
-
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-
-bindsym $mod+$alt+Left move left
-bindsym $mod+$alt+Right move right
-bindsym $mod+$alt+Up move up
-bindsym $mod+$alt+Down move down
-bindsym $mod+$alt+Enter fullscreen toggle
-
-bindsym $mod+Control+x exec flameshot gui  
 
 bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Down move down
+
+bindsym $mod+Shift+Enter fullscreen toggle
+
+bindsym $mod+x exec flameshot gui
 
 bindsym $alt+h split h
 bindsym $alt+v split v
@@ -83,8 +75,7 @@ bindsym $alt+e layout toggle split
 
 bindsym $mod+Shift+space floating toggle
 
-bindsym $alt+space exec  rofi -dpi 220 -theme  /usr/share/rofi/themes/solarized_alternate.rasi -show drun -columns 3
-#bindsym $alt+space exec utools
+bindsym $alt+space exec  rofi -dpi 192 -theme  /usr/share/rofi/themes/solarized_alternate.rasi -show drun -columns 3
 
 bindsym $mod+a focus parent
 
@@ -160,9 +151,8 @@ bindsym $mod+r mode "resize"
 bindsym $mod+o mode "open"
 
 mode "open"{
-    bindsym t exec alacritty 
+    bindsym t exec alacritty
     bindsym b exec firefox
-    bindsym w exec netease-cloud-music --force-device-scale-factor=2
     bindsym v exec pavucontrol-qt
     bindsym o exec /usr/bin/obsidian %U
     bindsym Return mode "default"
@@ -178,7 +168,7 @@ bar{
     workspace_buttons on
     status_command i3status
     #status_command ~/.config/i3/i3status.sh
- 
+
     colors {
         separator #666666
         background #222222
@@ -188,55 +178,27 @@ bar{
         inactive_workspace #333333 #333333 #888888
         urgent_workspace #2f343a #900000 #ffffff
     }
-
-
 }
 
 
-for_window [class="Pcmanfm"] floating enable
-for_window [class="netease-cloud-music"] floating enable
-for_window [class="org.remmina.Remmina"] floating enable
-#for_window [class="org.remmina.Remmina"] resize set 3156 1866
-for_window [class="netease-cloud-music"] resize set 1863 1236
-smart_gaps on
-smart_gaps inverse_outer
-smart_borders on
-exec xflux -g 116.404556 -l 39.923789  
+for_window [class="MPV"] floating enable
 
-exec xrandr --output eDP-1 --below DP-2 --auto
-#exec xrandr --output DisplayPort-0 --primary --mode 3840x2160 
-#exec xrandr --output HDMI-A-1 --right-of DisplayPort-0 --mode 3840x2160   
-#exec xrandr --output HDMI-A-0 --left-of DisplayPort-0 --mode 3840x2160   
-# 三个横屏[之前用]
-#exec xrandr --output DisplayPort-0 --primary --mode 3840x2160 --output HDMI-A-1 --right-of DisplayPort-0 --mode 3840x2160 --output HDMI-A-0 --left-of DisplayPort-0 --mode 3840x2160  
-# 俩个dp口
-#exec xrandr --output DP-1 --primary --mode 3840x2160  --top-of DP-2 --mode 3840x2160 
-# 1080p 废弃
-#exec xrandr --output DisplayPort-0 --primary --mode 3840x2160 --scale 0.5x0.5 --pos 1920x0 --rotate normal --output DisplayPort-1 --off --output HDMI-A-0 --mode 3840x2160 --scale 0.5x0.5  --pos 0x0 --rotate normal --output HDMI-A-1 --mode 3840x2160 --pos 3840x0 --scale 0.5x0.5 --rotate normal --output DVI-D-0 --off
+# 多屏显示
+exec xrandr --output eDP-1 --primary --mode 2880x1800 --rate 90 --output DP-2 --right-of eDP-1 --mode 3840x2160
+
+bindsym $mod+Shift+1 exec xrandr --output eDP-1 --mode 2880x1800 --rate 90 --output DP-2 --off
+bindsym $mod+Shift+2 exec xrandr --output DP-2 --off && xrandr --output eDP-1 --primary --mode 2880x1800 --rate 90 --output DP-2 --right-of eDP-1 --mode 3840x2160 --rate 60
+bindsym $mod+Shift+0 exec xrandr --output eDP-1 --off --output DP-2 --primary --mode 3840x2160 --rate 60
 
 
-#exec xrandr --output DisplayPort-0 --primary --mode 3840x2160 --output HDMI-A-1 --right-of DisplayPort-0  --rotate right --pos 0x1697 --mode 3840x2160 --output HDMI-A-0 --left-of DisplayPort-0 --mode 3840x2160  
-#exec xrandr --output DisplayPort-0 --primary --mode 3840x2160  --rotate normal --output DisplayPort-1 --off --output HDMI-A-0 --mode 3840x2160 --left-of DisplayPort-0 --rotate normal  --output HDMI-A-1 --right-of DisplayPort-0  --mode 3840x2160 --pos 7680x-676 --rotate right  
-
-#exec xrandr --output DisplayPort-0 --primary --mode 3840x2160 --output HDMI-A-1 --right-of DisplayPort-0 --rotate right  --mode 3840x2160 --output HDMI-A-0 --left-of DisplayPort-0 --mode 3840x2160  
-
-
-
-
-
-
-exec xrandr --dpi 196
-exec fcitx5
-#exec syncthing
-#exec barrier
+exec xrandr --dpi 192
+exec --no-startup-id fcitx5
 exec feh --bg-fill ~/Pictures/backgroud.jpg
 #exec /home/c/.config/polybar/hack/launch.sh --hack
-exec flameshot
-exec picom --config ~/.config/compton.conf -b
+exec --no-startup-id flameshot
+#exec picom --config ~/.config/compton.conf -b
 #exec --no-startup-id xset dpms 6000 6000 6000
-exec xset s off -dpms  
+exec xset s off -dpms
 exec xset dpms 0 0 0
-exec clash
-exec /home/chauncey/nfs.sh
-#exec utools
-#exec /home/c/.screenlayout/config.sh
+exec --no-startup-id clash
+#exec /home/chauncey/nfs.sh
