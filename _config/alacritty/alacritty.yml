@@ -15,7 +15,7 @@ window:
 
 scrolling:
   # Maximum number of lines in the scrollback buffer, 0 to disable scrolling.
-  history: 15000
+  history: 1500
   # Number of lines the viewport will move for every line scrolled when
   multiplier: 3
 
@@ -108,11 +108,11 @@ selection:
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: false
 
-window.dynamic_title: true
+window.dynamic_title: false
 
 # Cursor style
 cursor:
-  style: Block # Block/Underline/Beam
+  style: Beam # Block/Underline/Beam
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   unfocused_hollow: true
