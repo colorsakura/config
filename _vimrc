@@ -9,7 +9,11 @@
 set nocompatible               " be iMproved
 filetype on                   " required!
 
-call plug#begin('~/.vim/plugged')
+if has('win')
+    call plug#begin('~/vimfiles/plugged')
+else
+    call plug#begin('~/.vim/plugged')
+endif
 
 "Colorschemes.
 Plug 'NLKNguyen/papercolor-theme'
